@@ -1,32 +1,35 @@
+import { useState } from "react";
 import ExpenseList from "./expense-tracker/components/ExpenseList";
 
 function App() {
-  const expenses = [
+  const [expenses, setExpenses] = useState([
     {
       id: 1,
-      description: "lunch",
+      description: "breakfast",
       amount: 120,
       category: "lifestyle",
     },
     {
       id: 2,
-      description: "dinner",
+      description: "lunch",
       amount: 120,
       category: "lifestyle",
     },
     {
-      id: 1,
-      description: "lunch",
+      id: 3,
+      description: "dinner",
       amount: 55,
       category: "lifestyle",
     },
-  ];
+  ]);
 
   return (
     <div>
       <ExpenseList
         expenses={expenses}
-        onDelete={(id) => console.log("delete", id)}
+        onDelete={(id) =>
+          setExpenses(expenses.filter((expense) => expense.id !== id))
+        }
       />
     </div>
   );
